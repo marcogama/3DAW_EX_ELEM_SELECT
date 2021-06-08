@@ -1,0 +1,98 @@
+<!--MARCO ANTONIO RIBEIRO GAMA
+    MAT 1810478300006-->
+<!DOCTYPE html>
+<html lang = "pt-BR">
+        <head>
+           <meta charset = "UTF-8">
+		   <title>3DAW EX AJAX</title>
+           <script>
+		          //Js mostraInfo onchange resposta do AJAX
+                  function mostraInfo(str) {
+                                //console.log(str);
+                                if (str.length > 0) {
+                                        var xmlhttp = new XMLHttpRequest();
+                                        xmlhttp.onreadystatechange = function() {
+                                                                            if (this.readyState == 4 && this.status == 200) {
+                                                                                        document.getElementById("resposta").value = this.responseText;
+                                                                                        document.getElementById("resposta2").innerHTML = this.responseText;
+                                                                                        //console.log(this.responseText);
+                                                                            }
+                                                                    }
+                                                                    //console.log(str.length);
+                                                                    xmlhttp.open("GET", "http://localhost/htdocs/3DAW/3DAW_EX_AJAX.php?uf="+str, true);
+                                                                    xmlhttp.send();
+                                                                    //console.log(str);
+                                } else {
+                                        document.getElementById("resposta").value = "";
+                                        document.getElementById("resposta2").innerHTML = "";
+                                }
+                }
+				//Js recebeJson onchange no elemeto select
+				function recebeJson(str) {
+                                //console.log(str);
+                                if (str.length > 0) {
+                                        var xmlhttp = new XMLHttpRequest();
+                                        xmlhttp.onreadystatechange = function() {
+                                                                            if (this.readyState == 4 && this.status == 200) {
+                                                                                        document.getElementById("resposta").value = this.responseText;
+                                                                                        document.getElementById("resposta2").innerHTML = this.responseText;
+																						document.getElementById("estado").innerHTML = this.responseText;
+                                                                                        //console.log(this.responseText);
+                                                                            }
+                                                                    }
+                                                                    //console.log(str.length);
+                                                                    xmlhttp.open("GET", "http://localhost/htdocs/3DAW/3DAW_EX_AJAX.php?uf="+str, true);
+                                                                    xmlhttp.send();
+                                                                    //console.log(str);
+                                } else {
+                                        document.getElementById("resposta").value = "";
+                                        document.getElementById("resposta2").innerHTML = "";
+										document.getElementById("estado").innerHTML = "";
+                                }
+                }
+           </script>
+        </head>
+        <body>
+	        <form action="">
+                        <h3>Diga seu estado:</h3>
+                        <input type="text" id="uf" name="uf" onchange="mostraInfo(this.value)">
+                        <br>
+                        <input type="text" id="resposta" name="resposta">
+                        <br>
+                        <select name="estado" onchange="recebeJson(this.value)">
+                                    <option value="">escolha um estado</option>
+		                            <option value="Rio de Janeiro">Rio de Janeiro</option>
+                                    <option value="Sao Paulo">Sao Paulo</option>
+                                    <option value="Minas Gerais">Minas Gerais</option>
+                                    <option value="Espirito Santo">Espirito Santo</option>
+		                            <option value="Parana">Parana</option>
+                                    <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+                                    <option value="Santa Catarina">Santa Satarina</option>
+                                    <option value="Mato Grosso">Mato Grosso</option>
+		                            <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                                    <option value="Goias">Goias</option>
+                                    <option value="Tocantins">Tocantins</option>
+                                    <option value="Acre">Acre</option>
+		                            <option value="Amazonas">Amazonas</option>
+                                    <option value="Piaui">Piaui</option>
+                                    <option value="Para">Para</option>
+                                    <option value="Rondonia">Rondonia</option>
+		                            <option value="Roraima">Roraima</option>
+                                    <option value="Amapa">Amapa</option>
+                                    <option value="Bahia">Bahia</option>
+                                    <option value="Sergipe">Alagoas</option>
+		                            <option value="Pernambuco">Pernambuco</option>
+                                    <option value="Paraiba">Paraiba</option>
+                                    <option value="Rio grande do norte">Rio Grande do Norte</option>
+                                    <option value="Ceara">Ceara</option>
+		                            <option value="Maranhao">Maranhao</option>
+                                    <option value="Brasilia">Brasilia</option>
+                                    <option value="Sergipe">Sergipe</option>
+                        </select>
+	                    <h3>resposta do ajax:</h3><span id="resposta2"></span>
+                        <br>
+	                    <br>
+                        <h3>resposta do json:</h3><span id="estado"></span><br>
+            </form>
+	    </body>
+</html>
